@@ -38,31 +38,11 @@ def log_likelihood(params, data):
 
     return -likelihood
 
-# def my_logpdf(params, x):
-#     u = params[:3]  # The first three parameters are the mean vector
-#     covar = np.array([[params[3], params[4], params[5]],
-#                            [params[4], params[6], params[7]],
-#                            [params[5], params[7], params[8]]])
-#     k = len(x)  # dimension
-#     a = np.transpose(x - u)
-#     b = np.linalg.inv(covar)
-#     c = x - u
-#     d = np.matmul(a, b)
-#     e = np.matmul(d, c)
-#     numer = np.exp(-0.5 * e)
-#     f = (2 * np.pi)**k
-#     g = np.linalg.det(covar)
-#     denom = np.sqrt(f * g)
-#     pdf = numer / denom
-#     return np.log(pdf)
 
 initial_guess = np.array([5.0, 3.0, 1.0, 2.0, 0.5, 0.3, 1.0, 0.2, 1.5, 2.0, 1.0, 1.5])
-# initial_guess2 = np.array([5.0, 3.0, 1.0, 2.0, 0.5, 0.3, 1.0, 0.2, 1.5, 2.0, 1.0, 1.5])
 
 result = minimize(log_likelihood, initial_guess, args=(data,), method='L-BFGS-B')
 
-# second_result = minimize(my_logpdf, initial_guess2, args=(data,), method='L-BFGS-B')
-# print(second_result)
 estimated_mu = result.x[:3]
 estimated_cov = np.array([[result.x[3], result.x[4], result.x[5]],
                           [result.x[4], result.x[6], result.x[7]],
