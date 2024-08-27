@@ -24,19 +24,8 @@ for x in cat_cols:
 # X = l_encoder.fit_transform(X)
 X = nr_data.iloc[:, 0:15].values
 Y = nr_data.iloc[:, 15].values
-# print(X)
-# print("//////////////")
-# print(Y)
 
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=42)
-# print(X_train)
-# print("////////////////")
-# print(X_test)
-# print("////////////////")
-# print(Y_train)
-# print("////////////////")
-# print(Y_test)
-# print("////////////////")
 
 sc = StandardScaler()
 X_train = sc.fit_transform(X_train)
